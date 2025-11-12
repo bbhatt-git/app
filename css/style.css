@@ -70,15 +70,18 @@ body {
     z-index: 1000;
 }
 
+.club-logo {
+    /* Ensure the image fits nicely */
+    height: 30px; 
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 8px; /* Space between logo and club name */
+    /* Add a subtle shadow to make it pop against the glassmorphism background */
+    filter: drop-shadow(0 0 5px rgba(160, 80, 238, 0.5));
+}
+
 .logo-container {
     display: flex;
     align-items: center;
-}
-
-.logo-icon {
-    font-size: 1.6em;
-    color: var(--primary-color);
-    margin-right: 10px;
 }
 
 .club-name {
@@ -190,7 +193,7 @@ body {
 }
 
 .section-subtitle {
-    font-size: 1em;
+    font-size: 0.98em;
     color: var(--text-color);
     text-align: center;
     margin-bottom: 30px;
@@ -215,6 +218,21 @@ body {
     background-color: var(--card-hover-bg);
 }
 
+.hero-logo {
+    /* Set size for the logo image */
+    height: 80px; /* Larger size for prominence */
+    width: auto; 
+    display: block; /* Make it a block element to center it */
+    margin: 0 auto 20px auto; /* Center it and add space below */
+    /* Enhance the sleek glow effect for the hero area */
+    filter: drop-shadow(0 0 10px rgba(160, 80, 238, 0.8));
+    transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.05);
+}
+
 /* Hero Card */
 .hero-card {
     text-align: center;
@@ -223,7 +241,8 @@ body {
 }
 
 .hero-card h1 {
-    font-size: 2em;
+    /* REDUCED FONT SIZE to ensure the text fits on a single line in mobile view */
+    font-size: 1.5em; 
     margin-bottom: 10px;
     color: var(--heading-color);
     font-weight: 700;
@@ -231,10 +250,12 @@ body {
 
 .hero-card p {
     margin-bottom: 25px;
+    font-size: 0.9em;
 }
 
 .hero-card .primary-btn {
     width: 100%;
+    font-size: 0.88em;
 }
 
 /* --- ABOUT PAGE IMAGE BANNER --- */
@@ -275,7 +296,7 @@ body {
     padding: 12px 25px;
     border: none;
     border-radius: var(--radius-md);
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -325,7 +346,7 @@ body {
     border-radius: var(--radius-md);
     padding: 12px 15px;
     color: var(--text-color);
-    font-size: 1em;
+    font-size: 0.9em;
     outline: none;
 }
 
@@ -355,43 +376,68 @@ body {
     }
 }
 
-
-/* --- DYNAMIC CARD STYLING --- */
 /* Team Member Card */
 .team-member-card {
+    /* Use column layout for vertical stacking and center all contents */
     display: flex;
-    align-items: center; /* Align icon and text side-by-side */
-    gap: 15px;
+    flex-direction: column; 
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text content */
+    gap: 0; 
+    
     background-color: var(--card-bg);
-    padding: 15px 20px; /* Reduced padding for compact look */
+    /* REDUCED PADDING for a more compact look */
+    padding: 15px; 
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
-    text-align: left; /* Text alignment */
+    transition: all 0.3s ease; /* Added for sleek hover effect */
+}
+
+/* Added sleek hover effect */
+.team-member-card:hover {
+    background-color: var(--card-hover-bg);
+    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 10px 30px rgba(160, 80, 238, 0.4);
 }
 
 .member-icon {
-    font-size: 1.8em; /* Reduced size */
+    /* INCREASED ICON SIZE significantly for a dominant look */
+    font-size: 3.8em; 
     color: var(--primary-color);
+    margin-bottom: 10px; /* Space after icon */
+    /* Subtle glow on the icon itself */
+    filter: drop-shadow(0 0 5px rgba(160, 80, 238, 0.4));
+}
+
+.member-details {
+    width: 100%;
 }
 
 .member-details h3 {
-    font-size: 1.1em;
-    font-weight: 600;
+    font-size: 1.3em; 
+    font-weight: 700;
     color: var(--heading-color);
     margin-bottom: 2px;
 }
 
 .member-details .role {
-    font-size: 0.8em; /* Smaller role text */
+    font-size: 0.9em;
     color: #a050ee; 
-    margin-bottom: 5px;
+    font-weight: 600; /* Made post title slightly bolder */
+    
+    /* Added a clear separator line for the "Post" */
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    width: 80%;
+    margin: 0 auto 12px auto; /* Centers the role block and adds space before description */
 }
 
 .member-details .description {
-    font-size: 0.8em;
-    opacity: 0.9;
+    font-size: 0.85em;
+    opacity: 0.8; 
+    max-width: 90%; 
+    margin: 0 auto;
 }
-
 
 /* Announcement Item (Tappable for Detail Page) */
 .announcement-item {
