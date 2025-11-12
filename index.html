@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARC Academic Club</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Poppins Font and Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- 
+        Note: The app container is limited to a max-width for a clean mobile-app feel 
+        as shown in the provided images. 
+    -->
+    <div class="app-container">
+        
+        <!-- Header/Top Bar -->
+        <header class="header">
+            <div class="logo-container">
+                <!-- Using a placeholder/mock logo as assets aren't provided -->
+                <i class="fas fa-microchip logo-icon"></i>
+                <span class="club-name">SARC Club</span>
+            </div>
+            <button class="menu-toggle" aria-label="Open menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+
+        <!-- Sidebar Navigation (Glassmorphism drawer) -->
+        <nav class="sidebar-nav">
+            <button class="close-menu" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul>
+                <li><a href="#home" data-page="home" class="active-nav">Home</a></li>
+                <li><a href="#about" data-page="about">About & Team</a></li>
+                <li><a href="#events" data-page="events">Events</a></li>
+                <li><a href="#announcements" data-page="announcements">Announcements</a></li>
+                <li><a href="#suggestions" data-page="suggestions">Suggestions</a></li>
+                <li><a href="#admin" data-page="admin"><i class="fas fa-shield-alt"></i> Admin</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            
+            <!-- HOME SECTION -->
+            <section id="home" class="page-section active">
+                <div class="card glassmorphism hero-card">
+                    <h1>SARC Academic Club</h1>
+                    <p>Fostering innovation, collaboration, and academic excellence.</p>
+                    <button class="btn primary-btn" data-page-link="announcements">
+                        View Latest Announcements <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <h2 class="section-title small">Quick Announcements</h2>
+                <div id="announcements-container-mini">
+                    <!-- Dynamic announcements content rendered here by JS -->
+                    <div class="card glassmorphism placeholder">Loading announcements...</div>
+                </div>
+
+            </section>
+
+            <!-- ABOUT & TEAM SECTION (ACADEMIC FOCUS UPDATED) -->
+            <section id="about" class="page-section hidden">
+                <h2 class="section-title">About SARC Academic Club</h2>
+                <p class="section-subtitle">Fostering scholastic discipline, research aptitude, and collaborative learning.</p>
+
+                <!-- Team Image Banner -->
+                <div class="image-banner glassmorphism-overlay">
+                    <!-- Using a generic team photo placeholder -->
+                    <img src="team.jpg" alt="SARC Team Photo" class="team-photo">
+                </div>
+
+                <!-- Section 1: Introduction -->
+                <div class="card introduction-card">
+                    <p>The SARC Academic Club is a student-run organization dedicated to creating a **vibrant community** for students passionate about **academic excellence, critical research, and collaborative learning.**</p>
+                </div>
+
+                <!-- Section 2: Mission -->
+                <div class="card glassmorphism">
+                    <i class="fas fa-bullseye card-icon mission-icon"></i>
+                    <h3>Our Mission</h3>
+                    <p>To provide a platform for students to **excel in their scholastic pursuits**, enhance critical thinking and presentation skills, and connect with experts in various academic fields.</p>
+                </div>
+
+                <!-- Section 3: What We Do -->
+                <div class="card glassmorphism">
+                    <i class="fas fa-book-open card-icon mission-icon"></i>
+                    <h3>What We Do</h3>
+                    <p>We organize **inter-disciplinary quizzes, debate competitions, paper writing seminars**, and guest lectures. Our goal is to deepen theoretical understanding and apply knowledge effectively.</p>
+                </div>
+                
+                <h2 class="section-title">Meet the Team</h2>
+                <div id="team-members-container" class="grid-container">
+                    <!-- Dynamic team members content rendered here by JS -->
+                    <div class="card glassmorphism placeholder">Loading team...</div>
+                </div>
+            </section>
+
+            <!-- EVENTS SECTION (Gallery commented out, replaced with placeholder message) -->
+            <section id="events" class="page-section hidden">
+                <h2 class="section-title">Academic Competition & Event Gallery</h2>
+                <p class="section-subtitle">Highlights from our major academic and skills-based competitions.</p>
+                
+                <!-- Display message when no events are available -->
+                <div class="card glassmorphism" style="text-align: center; padding: 40px; margin-top: 30px;">
+                    <i class="fas fa-calendar-times" style="font-size: 2.5em; color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <p style="font-size: 1.1em; color: var(--heading-color);">No Events Conducted Yet. Check back soon!</p>
+                </div>
+                
+                <!-- START OF COMMENTED OUT GALLERY CONTENT -->
+                <!--
+                <div class="event-gallery grid-container">
+                    <div class="card glassmorphism gallery-item">
+                        <img src="https://placehold.co/400x150/30A0E0/FFFFFF?text=Quiz+Contest" alt="Science Quiz Event" class="gallery-image">
+                        <p class="gallery-caption">Inter-Science Quiz Contest</p>
+                    </div>
+                    <div class="card glassmorphism gallery-item">
+                        <img src="https://placehold.co/400x150/B040B0/FFFFFF?text=Coding+Challenge" alt="Coding Challenge Event" class="gallery-image">
+                        <p class="gallery-caption">Computer Science Coding Challenge</p>
+                    </div>
+                    <div class="card glassmorphism gallery-item">
+                        <img src="https://placehold.co/400x150/40C840/FFFFFF?text=Debate+Competition" alt="Debate Competition Event" class="gallery-image">
+                        <p class="gallery-caption">Inter-Section Debate Competition</p>
+                    </div>
+                    <div class="card glassmorphism gallery-item">
+                        <img src="https://placehold.co/400x150/C88030/FFFFFF?text=Speech+Contest" alt="Speech Contest Event" class="gallery-image">
+                        <p class="gallery-caption">Speech Contest</p>
+                    </div>
+                </div>
+                -->
+                <!-- END OF COMMENTED OUT GALLERY CONTENT -->
+            </section>
+
+            <!-- ANNOUNCEMENTS SECTION (Full List) -->
+            <section id="announcements" class="page-section hidden">
+                <h2 class="section-title">All Announcements</h2>
+                <div id="announcements-container-full">
+                    <!-- Full list of announcements rendered here by JS -->
+                    <div class="card glassmorphism placeholder">Loading full list...</div>
+                </div>
+            </section>
+            
+            <!-- ANNOUNCEMENT DETAIL PAGE - REMOVED AS IT IS NO LONGER NEEDED -->
+
+            <!-- SUGGESTIONS/FEEDBACK FORM -->
+            <section id="suggestions" class="page-section hidden">
+                <h2 class="section-title">Submit a Suggestion</h2>
+                <div class="form-container glassmorphism">
+                    <!-- ACTION now points to the user-provided Formspree ID -->
+                    <form id="suggestion-form" action="https://formspree.io/f/mwpakzyg" method="POST">
+                        
+                        <input type="hidden" name="_next" value="https://formspree.io/thanks">
+                        <input type="hidden" name="_subject" value="New Suggestion from SARC Club App">
+                        
+                        <div class="form-group" id="name-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="Name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <!-- Name set to _replyto so Formspree uses this email for replies -->
+                            <input type="email" id="email" name="_replyto" placeholder="your.email@example.com" required> 
+                        </div>
+                        
+                        <!-- Title Field (sent as 'Suggestion Title') -->
+                        <div class="form-group">
+                            <label for="title">Suggestion Title</label>
+                            <input type="text" id="title" name="Suggestion Title" placeholder="e.g., Idea for ML workshop" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="suggestion">Suggestion/Idea</label>
+                            <!-- Suggestion text is sent as 'Suggestion' -->
+                            <textarea id="suggestion" name="Suggestion" placeholder="Tell us your idea in detail..." required></textarea>
+                        </div>
+
+                        
+                        <button type="submit" class="btn primary-btn">
+                            Submit Suggestion <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div id="submission-message" class="hidden"></div>
+                </div>
+            </section>
+
+            <!-- ADMIN LOGIN (No actual logic) -->
+            <section id="admin" class="page-section hidden">
+                <h2 class="section-title">Admin Login</h2>
+                <div class="login-container glassmorphism">
+                    <div class="admin-icon"><i class="fas fa-lock"></i></div>
+                    <p class="login-subtitle">Enter your credentials to access the admin panel.</p>
+                    <div class="form-group">
+                        <label for="admin-email">Email</label>
+                        <input type="email" id="admin-email" placeholder="admin@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" placeholder="•••••••••">
+                    </div>
+                    <p id="login-error" class="error-message hidden">Invalid credentials.</p>
+                    <button class="btn primary-btn" id="admin-login-btn">Sign In</button>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with <i class="fas fa-heart" style="color: #ff4d4f;"></i> by Bhupesh Raj Bhatt</p>
+        </footer>
+
+    </div> 
+    
+    <!-- Load the JavaScript file -->
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
