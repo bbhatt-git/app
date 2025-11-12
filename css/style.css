@@ -1,0 +1,545 @@
+/* Basic Resets & Variables */
+:root {
+    --bg-color: #0c001c; /* Deep Violet/Black background */
+    --card-bg: rgba(255, 255, 255, 0.15); /* Semi-transparent white for glass effect */
+    --card-hover-bg: rgba(255, 255, 255, 0.2);
+    --border-color: rgba(255, 255, 255, 0.25); /* Stronger white border */
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --primary-color: #6a1c9e; /* Darker Purple for accents */
+    --primary-gradient: linear-gradient(135deg, #a050ee, #6a1c9e); /* Purple gradient */
+    --blur-strength: 20px; /* High Blur Strength */
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --error-color: #ff4d4f; /* Red for errors */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    position: relative;
+    
+    /* Subtle background gradient for depth */
+    background-image: linear-gradient(45deg, #100030, #0c001c, #000000);
+}
+
+/* App Container - Ensures mobile-first constraint and design coherence */
+.app-container {
+    width: 100%; 
+    max-width: 450px; /* Mobile View Constraint */
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.7); /* Deep shadow */
+    z-index: 1;
+}
+
+/* FIX: When the menu is open, this overlay prevents clicking on the main content */
+.app-container.menu-open .content {
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* --- HEADER --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-bg); 
+    backdrop-filter: blur(var(--blur-strength)); 
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 1.6em;
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.club-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.menu-toggle {
+    background: var(--primary-gradient);
+    border: none;
+    color: var(--heading-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 10px rgba(160, 80, 238, 0.5);
+    transition: transform 0.2s ease;
+}
+.menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* --- NAVIGATION / SIDEBAR (Increased Blur and Transparency) --- */
+.sidebar-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 85%;
+    max-width: 300px;
+    height: 100%;
+    /* 20% Opacity (0.2) applied to the sidebar background for high transparency */
+    background-color: rgba(13, 13, 30, 0.2); 
+    backdrop-filter: blur(calc(var(--blur-strength) + 5px)); 
+    -webkit-backdrop-filter: blur(calc(var(--blur-strength) + 5px));
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    transition: right 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid var(--border-color);
+}
+
+.sidebar-nav.active {
+    right: 0; /* Slide in */
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.8em;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-bottom: 20px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 12px 10px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-md);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-nav ul li a i {
+    margin-right: 10px;
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a.active-nav {
+    color: var(--heading-color);
+    background-color: rgba(255, 255, 255, 0.25); /* Slightly darker blur on hover/active */
+    box-shadow: 0 0 10px rgba(160, 80, 238, 0.3);
+}
+
+/* --- MAIN CONTENT --- */
+.content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.page-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.8em;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.section-title.small {
+    font-size: 1.4em;
+    text-align: left;
+}
+
+.section-subtitle {
+    font-size: 1em;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+/* --- GLASSMORPHISM CARD STYLE (Generic) --- */
+.card, .form-container, .login-container {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(var(--blur-strength));
+    -webkit-backdrop-filter: blur(var(--blur-strength));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 25px;
+    /* Increased margin-bottom for gap between announcements/cards */
+    margin-bottom: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.card:hover {
+    background-color: var(--card-hover-bg);
+}
+
+/* Hero Card */
+.hero-card {
+    text-align: center;
+    padding: 40px 25px;
+    background-image: linear-gradient(135deg, rgba(160, 80, 238, 0.1), rgba(106, 28, 158, 0.1));
+}
+
+.hero-card h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+.hero-card p {
+    margin-bottom: 25px;
+}
+
+.hero-card .primary-btn {
+    width: 100%;
+}
+
+/* --- ABOUT PAGE IMAGE BANNER --- */
+.image-banner {
+    position: relative;
+    margin-bottom: 25px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.team-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.introduction-card {
+    background: rgba(13, 13, 30, 0.85); /* Slightly less transparent for strong text block */
+    backdrop-filter: blur(8px);
+    padding: 20px;
+}
+
+/* Mission/What We Do Cards */
+.mission-icon {
+    font-size: 2.5em;
+    color: #a050ee; 
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.primary-btn {
+    background: var(--primary-gradient);
+    color: var(--heading-color);
+    box-shadow: 0 5px 15px rgba(160, 80, 238, 0.4);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(160, 80, 238, 0.6);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+
+/* --- FORM STYLES --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly less transparent for input contrast */
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 12px 15px;
+    color: var(--text-color);
+    font-size: 1em;
+    outline: none;
+}
+
+.small-text-note {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* --- GRID LAYOUTS (Team/Events) --- */
+.grid-container {
+    display: grid;
+    gap: 15px;
+    /* Mobile: Single Column */
+    grid-template-columns: 1fr;
+}
+
+/* Tablet/Desktop: 2 Columns for better view */
+@media (min-width: 451px) {
+    .app-container {
+        max-width: 900px;
+    }
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* --- DYNAMIC CARD STYLING --- */
+/* Team Member Card */
+.team-member-card {
+    display: flex;
+    align-items: center; /* Align icon and text side-by-side */
+    gap: 15px;
+    background-color: var(--card-bg);
+    padding: 15px 20px; /* Reduced padding for compact look */
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    text-align: left; /* Text alignment */
+}
+
+.member-icon {
+    font-size: 1.8em; /* Reduced size */
+    color: var(--primary-color);
+}
+
+.member-details h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--heading-color);
+    margin-bottom: 2px;
+}
+
+.member-details .role {
+    font-size: 0.8em; /* Smaller role text */
+    color: #a050ee; 
+    margin-bottom: 5px;
+}
+
+.member-details .description {
+    font-size: 0.8em;
+    opacity: 0.9;
+}
+
+
+/* Announcement Item (Tappable for Detail Page) */
+.announcement-item {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    cursor: pointer; /* Indicate clickability */
+    transition: background-color 0.3s ease;
+}
+
+.announcement-item:hover {
+    background-color: var(--card-hover-bg);
+}
+
+.announcement-item h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.announcement-meta {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* --- EVENT GALLERY STYLES --- */
+.event-gallery {
+    /* Inherits grid-container styles */
+    margin-top: 20px;
+}
+
+.gallery-item {
+    padding: 10px;
+    text-align: center;
+    overflow: hidden; 
+    /* Ensures event gallery items also use the increased margin */
+    margin-bottom: 25px; 
+}
+
+.gallery-image {
+    width: 100%;
+    height: 150px; /* Fixed height for uniformity */
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+}
+
+.gallery-caption {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.gallery-item.placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Match approximate height of image cards */
+}
+
+.gallery-icon {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+
+/* --- ADMIN LOGIN ERROR --- */
+.error-message {
+    color: var(--error-color);
+    background-color: rgba(255, 77, 79, 0.1);
+    border: 1px solid var(--error-color);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* --- FOOTER --- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8em;
+    opacity: 0.6;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Utility Class */
+.hidden {
+    display: none !important;
+}
+
+
+/* --- REVEAL ANIMATIONS (Fade-in and Slide Up) --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation to all major dynamic content cards */
+.hero-card,
+.announcement-item,
+.team-member-card,
+.event-card,
+.gallery-item,
+.introduction-card,
+.form-container,
+.login-container {
+    opacity: 0; 
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Staggered Delay applied only when the section is active/visible */
+
+.page-section.active .card,
+.page-section.active .announcement-item,
+.page-section.active .team-member-card,
+.page-section.active .event-card,
+.page-section.active .gallery-item {
+    /* Base delay for the first item in a section */
+    animation-delay: 0.2s; 
+}
+
+/* Applying stagger effect to repetitive elements like announcements, team, and events */
+.page-section.active .announcement-item:nth-child(2) { animation-delay: 0.3s; }
+.page-section.active .announcement-item:nth-child(3) { animation-delay: 0.4s; }
+.page-section.active .announcement-item:nth-child(4) { animation-delay: 0.5s; }
+
+.page-section.active .team-member-card:nth-child(2) { animation-delay: 0.3s; }
+.page-section.active .team-member-card:nth-child(3) { animation-delay: 0.4s; }
+.page-section.active .team-member-card:nth-child(4) { animation-delay: 0.5s; }
+.page-section.active .team-member-card:nth-child(5) { animation-delay: 0.6s; }
+.page-section.active .team-member-card:nth-child(6) { animation-delay: 0.7s; }
+
+.page-section.active .gallery-item:nth-child(2) { animation-delay: 0.3s; }
+.page-section.active .gallery-item:nth-child(3) { animation-delay: 0.4s; }
+.page-section.active .gallery-item:nth-child(4) { animation-delay: 0.5s; }
