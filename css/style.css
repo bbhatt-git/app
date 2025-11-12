@@ -73,7 +73,7 @@ body {
 .club-logo {
     /* Ensure the image fits nicely */
     height: 30px; 
-    width: auto; /* Maintain aspect ratio */
+    width: 30px; /* Maintain aspect ratio */
     margin-right: 8px; /* Space between logo and club name */
     /* Add a subtle shadow to make it pop against the glassmorphism background */
     filter: drop-shadow(0 0 5px rgba(160, 80, 238, 0.5));
@@ -221,7 +221,7 @@ body {
 .hero-logo {
     /* Set size for the logo image */
     height: 80px; /* Larger size for prominence */
-    width: auto; 
+    width: 80px; 
     display: block; /* Make it a block element to center it */
     margin: 0 auto 20px auto; /* Center it and add space below */
     /* Enhance the sleek glow effect for the hero area */
